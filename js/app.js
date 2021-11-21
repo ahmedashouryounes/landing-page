@@ -46,9 +46,11 @@ const fragment = new DocumentFragment();
 for (let section of sections) {
     const li = document.createElement('li')
     const a = document.createElement('a')
+    a.href = `#${section.id}`
     a.textContent = section.dataset.nav
     a.classList.add('menu__link')
-    a.addEventListener('click', function () {
+    a.addEventListener('click', function (eve) {
+        eve.preventDefault()
         // Scroll to section on link click
         section.scrollIntoView({
             block: 'start',
