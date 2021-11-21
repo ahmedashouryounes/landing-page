@@ -76,4 +76,17 @@ ul.appendChild(fragment)
  */
 
 
+// Add class 'active' to section when near top of viewport
+function scrollActive() {
+    sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top
+        if (sectionTop >= 0 && sectionTop <= 400) {
+            section.classList.add('your-active-class')
+        } else {
+            section.classList.remove('your-active-class')
+        }
+    })
+}
+
+window.addEventListener('scroll', scrollActive)
 
