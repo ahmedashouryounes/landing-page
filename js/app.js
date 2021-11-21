@@ -11,24 +11,27 @@
  * 
  * JS Standard: ESlint
  * 
-*/
+ */
 
 /**
  * Comments should be present at the beginning of each procedure and class.
  * Great to have comments before crucial code sections within the procedure.
-*/
+ */
 
 /**
  * Define Global Variables
  * 
-*/
+ */
 
+const sections = [...document.querySelectorAll('section')]
+const ul = document.querySelector('ul')
+const fragment = new DocumentFragment();
 
 /**
  * End Global Variables
  * Start Helper Functions
  * 
-*/
+ */
 
 
 
@@ -36,27 +39,41 @@
  * End Helper Functions
  * Begin Main Functions
  * 
-*/
+ */
 
 // build the nav
 
-
-// Add class 'active' to section when near top of viewport
-
-
-// Scroll to anchor ID using scrollTO event
+for (let section of sections) {
+    const li = document.createElement('li')
+    const a = document.createElement('a')
+    a.textContent = section.dataset.nav
+    a.classList.add('menu__link')
+    a.addEventListener('click', function () {
+        // Scroll to section on link click
+        section.scrollIntoView({
+            block: 'start',
+            inline: 'start',
+            behavior: 'smooth'
+        })
+        for (let section of sections) {
+            section.classList.remove('your-active-class')
+        }
+        // Set sections as active
+        section.classList.add('your-active-class')
+    })
+    // Build menu 
+    li.appendChild(a)
+    fragment.append(li)
+}
+// add to ul
+ul.appendChild(fragment)
 
 
 /**
  * End Main Functions
  * Begin Events
  * 
-*/
+ */
 
-// Build menu 
-
-// Scroll to section on link click
-
-// Set sections as active
 
 
